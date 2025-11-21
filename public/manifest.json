@@ -1,0 +1,35 @@
+{
+  "name": "Behind U",
+  "short_name": "Behind U",
+  "description": "香港本地 AI 廣告搜索平台，支援廣東話搜索",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "utilities"],
+  "lang": "zh-HK",
+  "dir": "ltr"
+}
