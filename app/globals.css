@@ -2,76 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #00ff99;
-  --muted: #888888;
-  --border: #333333;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  .luxury-glow {
-    text-shadow: 0 0 20px rgba(0, 255, 153, 0.5),
-                 0 0 40px rgba(0, 255, 153, 0.3);
-  }
-  
-  .card-glow {
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.1),
-                0 0 30px rgba(0, 255, 153, 0.05);
-  }
-  
-  .border-glow {
-    border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
-  }
-}
-
-@layer components {
-  .btn-primary {
-    @apply bg-primary text-black font-bold py-3 px-8 rounded-full 
-           transition-all duration-300 hover:shadow-lg hover:shadow-primary/50
-           active:scale-95;
-  }
-  
-  .input-primary {
-    @apply bg-black border-2 border-border text-white px-6 py-4 rounded-full
-           focus:outline-none focus:border-primary focus:shadow-lg 
-           focus:shadow-primary/30 transition-all duration-300;
-  }
-  
-  .card {
-    @apply bg-black border border-border rounded-2xl p-6 
-           transition-all duration-300 hover:border-primary/50
-           hover:shadow-lg hover:shadow-primary/10;
-  }
+  background-color: #000000;
+  color: white;
 }
