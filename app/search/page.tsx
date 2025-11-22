@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import AdCard from '@/components/AdCard'
 
 export default function SearchPage({
@@ -6,7 +8,7 @@ export default function SearchPage({
   searchParams: { q: string }
 }) {
   const query = searchParams.q || ''
-  
+
   // Mock data - 將來會連接到 Supabase
   const ads = [
     {
@@ -28,14 +30,11 @@ export default function SearchPage({
   ]
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        搵到 {ads.length} 個最 Match!
-      </h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="min-h-screen bg-black text-white p-4">
+      <h1 className="text-2xl font-bold mb-4">搵到 {ads.length} 個最 Match!</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {ads.map((ad) => (
-          <AdCard key={ad.id} {...ad} />
+          <AdCard key={ad.id} ad={ad} />
         ))}
       </div>
     </div>
