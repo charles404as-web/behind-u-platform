@@ -1,40 +1,26 @@
-import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
-})
+  apiVersion: '2023-10-16',
+});
 
-export async function POST(request: NextRequest) {
-  try {
-    const { amount, currency = 'hkd' } = await request.json()
+export async function POST(req: NextRequest) {
+  const { plan } = await req.json();
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency,
-            product_data: {
-              name: 'Behind U 廣告發布',
-              description: '在 Behind U 平台發布您的廣告',
-            },
-            unit_amount: amount,
-          },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${request.headers.get('origin')}/dashboard?success=true`,
-      cancel_url: `${request.headers.get('origin')}/dashboard?canceled=true`,
-    })
+  const priceMap: Record<string, string> = {
+    trial: "price_1SW7dJ3KLPr03pPgnG2FzFht",
+    monthly: "price_1SW7gC3KLPr03pPgBTq180Xa",
+    daily: "price_1SW7hM3KLPr03pPgGtB3qwrC",
+  };
 
-    return NextResponse.json({ sessionId: session.id })
-  } catch (error) {
-    console.error('Error creating checkout session:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
-  }
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card', 'fps'],
+    mode: 'payment',
+    line_items: [{ price: priceMap[plan], quantity: 1 }],
+    success_url: `${req.headers.get('origin')}/dashboard?success=1`,
+    cancel_url: `${req.headers.get('origin')}/dashboard`,
+  });
+
+  return NextResponse.json({ url: session.url });
 }
